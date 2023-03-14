@@ -19,6 +19,11 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
+
+## This function you need to modify as per your need
+## Here verifying if face value coming from mobile device is 
+## matched with our dataset, send that person name back to mobile
+## so you can show success message, like - "XYZ attandance"
 @app.route('/api/facedetect', methods=['GET','POST'])
 def upload_image():
     if request.method == "GET":
@@ -64,9 +69,14 @@ def upload_image():
             resp.status_code = 500
             return resp
         else:
+            ## Here based on yoour requirements you can save data.
+            ## Like person ID and date of attendance. 
+            ## It will execute all the time , so manage flag if attendence already done.
+            ## This Part Read the face, and if face match , it will send the person name with accuracy value to
+            ## android app. 
             resp = jsonify({"message":"success", "data": results})
             resp.status_code = 200
             return resp
 
 if __name__ == '__main__':
-    app.run(port=5000, host="192.168.43.91", debug=True, threaded=False, processes=3)
+    app.run(port=5000, host="0.0.0.0", debug=True, threaded=False, processes=3)

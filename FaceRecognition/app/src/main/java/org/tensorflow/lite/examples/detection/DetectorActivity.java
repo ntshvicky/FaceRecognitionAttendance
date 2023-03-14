@@ -260,7 +260,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
   }
 
   public void loadAPIResponse(String result, SimilarityClassifier.Recognition rec) {
-    Log.w("Result", result);
+    Log.w("API Response", result);
 
     try {
       JSONArray jsonArray = new JSONArray("[" + result + "]");
@@ -270,13 +270,17 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
         JSONArray resArray = obj.getJSONArray("data");
         JSONObject resObj = resArray.getJSONObject(0);
         if(resObj.getString("name").equalsIgnoreCase("unknown")) {
-
+          // If face unknown , then no need to show toast
         } else {
+          // If face match or get any result from api show here
           rec.setColor(Color.GREEN);
           rec.setExtra(true);
           rec.setTitle(resObj.getString("name"));
           detector.register(resObj.getString("name"), rec);
           Toast.makeText(getApplicationContext(), obj.getString("data"), Toast.LENGTH_LONG).show();
+          //Make face_detect false to prevent looping in toast message
+          // Show it will show you result once only
+          //Modify as per your need.. I am commenting this line just for output
           face_detected = false;
         }
       }
@@ -333,6 +337,8 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     Log.w("mappedRecognitions", String.valueOf(mappedRecognitions.size()));
 
     if (mappedRecognitions.size() > 0) {
+
+      Log.w("face_detected", String.valueOf(face_detected));
 
       //Post image to api and validate from api
       if(face_detected == true) {

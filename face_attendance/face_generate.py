@@ -26,12 +26,14 @@ folder_name="dataset/"+name
 if os.path.exists(folder_name):
     print ("Folder exist")
 else:
-	os.mkdir(folder_name)
+	os.makedirs(folder_name)
 
 # if a video path was not supplied, grab the reference to the webcam
 if not args.get("video", False):
 	
-	camera = cv2.VideoCapture(0)
+	camera = cv2.VideoCapture(1) 
+	#use 1 if you have macos and iphone bcz then 0 will be iphone, Its based on your apple setting
+	#Other os / hardware use 0
  
 # otherwise, grab a reference to the video file
 else:

@@ -6,7 +6,7 @@ package org.tensorflow.lite.examples.detection.WebServices;
 
 public class ConstantString {
 
-    public final static String URL = "http://192.168.43.91:5000/api";
+    public final static String URL = "http://192.168.1.234:5000/api";
 
     public static final String FACEDETECT = "facedetect";
 

@@ -109,8 +109,8 @@ public abstract class CameraActivity extends AppCompatActivity
     super.onCreate(null);
 
     Intent intent = getIntent();
-    useFacing = intent.getIntExtra(KEY_USE_FACING, CameraCharacteristics.LENS_FACING_FRONT);
-    //useFacing = intent.getIntExtra(KEY_USE_FACING, CameraCharacteristics.LENS_FACING_BACK);
+    //useFacing = intent.getIntExtra(KEY_USE_FACING, CameraCharacteristics.LENS_FACING_FRONT);
+    useFacing = intent.getIntExtra(KEY_USE_FACING, CameraCharacteristics.LENS_FACING_BACK);
 
     getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
@@ -273,7 +273,7 @@ public abstract class CameraActivity extends AppCompatActivity
         //rgbBytes = new int[previewWidth * previewHeight];
         //onPreviewSizeChosen(new Size(previewSize.width, previewSize.height), 90);
           rgbBytes = new int[previewWidth * previewHeight];
-          int rotation = 90;
+          int rotation = 0; // 0 for portrait, or 90 if in 0 its showing landscape
           if (useFacing == CameraCharacteristics.LENS_FACING_FRONT) {
               rotation = 270;
           }
