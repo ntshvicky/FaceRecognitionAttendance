@@ -39,3 +39,6 @@ An Android as frontend and Python as backend face recognition app used on attend
 -> also because it is asynchronous and its keep calling..
 -> If result is [] , mean face not matched
 -> You need to manage flag for this.
+
+# Ref--
+https://drive.google.com/file/d/1-z2bFYZ4LQO0cz5Pi9ULGNzOg2ppEKrL/view?usp=sharing
